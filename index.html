@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A World Tour in My Life</title>
+<meta name="description" content="박정훈 가족의 세계여행 기록 — 다녀온 곳과 앞으로 갈 곳을 지구본으로 살펴보세요.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ 인트로 ============ -->
+<section id="intro">
+  <div class="sun"></div>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <div class="cloud cloud4"></div>
+  <div class="plane">✈️</div>
+
+  <div class="intro-content">
+    <div class="intro-eyebrow">World Tour in My Life</div>
+    <h1 class="intro-title">우리 가족이 걸어온,<br>그리고 걸어갈 세계</h1>
+    <p class="intro-sub">
+      아이들과 함께한 여행의 기록들. 사진 한 장, 동선 하나에 담긴
+      순간들을 지구본을 돌려가며 다시 꺼내봅니다.
+    </p>
+    <button class="scroll-cue" id="scroll-cue">
+      지구본으로 이동
+      <span class="arrow"></span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ 지구본 ============ -->
+<section id="globe-section">
+  <div class="section-head">
+    <h2>🌍 우리의 여행 지도</h2>
+    <p>점을 클릭하면 여행 사진과 기록을 볼 수 있어요. 마우스로 드래그하면 자유롭게 회전됩니다.</p>
+    <div class="legend">
+      <span><i class="dot visited"></i> 다녀온 여행</span>
+      <span><i class="dot planned"></i> 여행 예정</span>
+    </div>
+  </div>
+
+  <div id="globe-viz"></div>
+
+  <div id="trip-grid"></div>
+</section>
+
+<footer>
+  <div>© Julyjunghoon · <a href="https://github.com/Julyjunghoon/worldtour_in_Mylife" target="_blank" rel="noopener">GitHub Repo</a></div>
+</footer>
+
+<!-- ============ 갤러리 모달 ============ -->
+<div id="modal-backdrop">
+  <div id="modal"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2/dist/globe.gl.min.js"></script>
+<script src="assets/js/trips-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

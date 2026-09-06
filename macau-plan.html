@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마카오 여행 계획표 · 2026.09</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .plan-wrap{ max-width:820px; margin:0 auto; padding:60px 20px 80px; background:var(--paper); color:var(--ink); }
+  .plan-header{ text-align:center; margin-bottom:34px; }
+  .plan-header .tag{ background:#dcecf6; color:#1f6f9c; }
+  .plan-header h1{ margin:14px 0 6px; font-size:clamp(24px,4vw,34px); }
+  .plan-header p{ color:var(--ink-soft); margin:0; }
+  .back-link{ display:inline-block; margin-bottom:20px; font-size:13px; color:var(--ink-soft); text-decoration:none; }
+  .info-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:30px 0; }
+  .info-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 18px; }
+  .info-card h3{ margin:0 0 8px; font-size:14px; color:var(--accent); }
+  .info-card p{ margin:2px 0; font-size:13.5px; line-height:1.6; }
+  .day-block{ margin:34px 0; }
+  .day-block h2{
+    font-size:16px; background:var(--accent); color:#fff; display:inline-block;
+    padding:6px 16px; border-radius:999px; margin:0 0 6px;
+  }
+  .day-block .day-desc{ font-size:13px; color:var(--ink-soft); margin:6px 0 14px; }
+  .timeline{ border-left:2px solid var(--border); padding-left:18px; }
+  .timeline .item{ margin-bottom:14px; font-size:14px; line-height:1.6; }
+  .timeline .item b{ color:var(--accent); }
+  #route-map{ height:480px; border-radius:18px; margin:16px 0; overflow:hidden; border:1px solid var(--border); }
+  .shuttle-card{
+    background:#fbeee0; border:1px dashed var(--accent-soft); border-radius:16px; padding:18px 20px; margin:20px 0;
+    font-size:13.5px; line-height:1.7;
+  }
+  .shuttle-card h3{ margin:0 0 8px; }
+  .shuttle-card .alt{ color:var(--ink-soft); }
+</style>
+</head>
+<body style="background:var(--paper);">
+
+<div class="plan-wrap">
+  <a class="back-link" href="index.html">&larr; 지구본으로 돌아가기</a>
+
+  <div class="plan-header">
+    <span class="tag" style="display:inline-block;padding:4px 12px;border-radius:999px;font-size:12px;">여행 예정</span>
+    <h1>🇲🇴 4박 5일 마카오 가족 여행</h1>
+    <p>2026.09.18(금) ~ 09.22(화) · 박시율(4세) · 박선율(6세) · 조민주(40) · 박정훈(44)</p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>✈️ 가는 편</h3>
+      <p>7C6001 · 제주항공</p>
+      <p>인천 1터미널 09:50 → 마카오 12:50</p>
+    </div>
+    <div class="info-card">
+      <h3>✈️ 오는 편</h3>
+      <p>7C6002 · 제주항공</p>
+      <p>마카오 13:50 → 인천 1터미널 18:40</p>
+    </div>
+  </div>
+
+  <div class="shuttle-card">
+    <h3>🚌 공항 → 스튜디오 시티 호텔 이동</h3>
+    <b>1순위: 무료 호텔 셔틀버스</b> — 입국장에서 "Hotel Shuttle" 표지판 따라 <b>4번 플랫폼</b>(시티오브드림즈·스튜디오시티 공동 운영). 운행 09:35~21:35, 배차간격 10~15분. 12:50 도착이면 여유롭게 이용 가능.<br>
+    <span class="alt">셔틀 대기줄이 길 때만 대안: 택시 (공항 출구 앞 승강장, 약 50 MOP, 현금 결제만 가능, 소요 10분 내외)</span>
+  </div>
+
+  <div class="day-block">
+    <h2>DAY 1 · 9/18(금)</h2>
+    <div class="day-desc">마카오 입성 및 코타이 실내 야경 투어</div>
+    <div class="timeline">
+      <div class="item"><b>12:50</b> 마카오 도착 → 셔틀버스(4번 플랫폼) 또는 택시로 스튜디오 시티 이동</div>
+      <div class="item"><b>15:00</b> 스튜디오 시티 체크인, 객실 휴식 및 첫 수영</div>
+      <div class="item"><b>17:30</b> 호텔 내 저녁 식사</div>
+      <div class="item"><b>18:30</b> 파리지앵 마카오 — 에펠탑 조명쇼 (실내 구름다리 도보)</div>
+      <div class="item"><b>19:30</b> 런더너 마카오 — 근위병 교대식 관람</div>
+      <div class="item"><b>20:10</b> 베네시안 마카오 — 실내 운하 & 에그타르트, 이후 호텔 복귀</div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <h2>DAY 2 · 9/19(토)</h2>
+    <div class="day-desc">타이파 로컬 투어 & 불꽃축제 버스 투어</div>
+    <div class="timeline">
+      <div class="item"><b>09:00</b> 스튜디오 시티 키즈카페 및 수영</div>
+      <div class="item"><b>15:00</b> 타이파 빌리지 산책 · 세기카페 간식</div>
+      <div class="item"><b>16:00</b> 산미우 마트 쇼핑 → <b>16:30</b> 안토니오 레스토랑 이른 저녁</div>
+      <div class="item"><b>20:20</b> 🎇 불꽃축제 스페셜 오픈탑 2층 버스 탑승 (유모차 1층 보관, 방한/방음 준비물 필수)</div>
+      <div class="item"><b>21:30</b> 투어 종료, 호텔 복귀</div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <h2>DAY 3 · 9/20(일)</h2>
+    <div class="day-desc">짐 이동 최적화 및 1차 그랜드 리조트 덱</div>
+    <div class="timeline">
+      <div class="item"><b>09:00</b> 스튜디오 시티 수영장, 체크아웃</div>
+      <div class="item"><b>11:00</b> 브로드웨이 호텔 벨데스크에 짐 보관</div>
+      <div class="item"><b>11:30</b> 갤럭시 호텔 다이아몬드 분수쇼 → <b>12:00</b> 점심(정두)</div>
+      <div class="item"><b>13:00</b> 갤럭시 키즈클럽 & 쇼핑</div>
+      <div class="item"><b>15:00</b> 브로드웨이 체크인 → <b>16:00</b> 그랜드 리조트 덱 물놀이</div>
+      <div class="item"><b>18:30</b> 저녁(팀호완)</div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <h2>DAY 4 · 9/21(월)</h2>
+    <div class="day-desc">자매 스냅 촬영과 여유로운 호캉스</div>
+    <div class="timeline">
+      <div class="item"><b>09:00</b> 브로드웨이 조식 및 오전 수영</div>
+      <div class="item"><b>11:00</b> 선율·시율 스냅 촬영</div>
+      <div class="item"><b>12:30</b> 점심(딘타이펑) → <b>13:30</b> 갤럭시 키즈클래스</div>
+      <div class="item"><b>16:00</b> 그랜드 리조트 덱 2차 물놀이</div>
+      <div class="item"><b>18:00</b> 저녁(오문카페)</div>
+      <div class="item"><b>19:00</b> 윈팰리스 케이블카 & 분수쇼</div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <h2>DAY 5 · 9/22(화)</h2>
+    <div class="day-desc">귀국</div>
+    <div class="timeline">
+      <div class="item"><b>09:00</b> 호텔 조식, 짐 정리</div>
+      <div class="item"><b>10:30</b> 브로드웨이 체크아웃</div>
+      <div class="item"><b>13:50</b> 마카오 출발(7C6002) → 인천 18:40 도착</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:18px;">📍 동선 지도</h2>
+  <p style="font-size:13px;color:var(--ink-soft);">색으로 구분된 일자별 동선입니다. 마커를 클릭하면 시간과 활동이 표시됩니다.</p>
+  <div id="route-map"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const DAYS = [
+  { label:'DAY1', color:'#e0604a', stops:[
+    { name:'마카오 국제공항', time:'12:50', desc:'입국 심사 후 셔틀버스(4번 플랫폼) 또는 택시로 이동', coord:[22.1496,113.5915] },
+    { name:'스튜디오 시티 마카오', time:'15:00', desc:'체크인, 휴식, 첫 수영 / 17:30 저녁식사', coord:[22.1487,113.5568] },
+    { name:'파리지앵 마카오', time:'18:30', desc:'에펠탑 조명쇼', coord:[22.1467,113.5561] },
+    { name:'런더너 마카오', time:'19:30', desc:'근위병 교대식', coord:[22.1477,113.5546] },
+    { name:'베네시안 마카오', time:'20:10', desc:'실내 운하 & 에그타르트', coord:[22.1466,113.5540] }
+  ]},
+  { label:'DAY2', color:'#3e8a5f', stops:[
+    { name:'스튜디오 시티 마카오', time:'09:00', desc:'키즈카페 및 수영', coord:[22.1487,113.5568] },
+    { name:'타이파 빌리지', time:'15:00', desc:'산책, 간식, 마트, 저녁', coord:[22.1552,113.5497] },
+    { name:'오픈탑 버스 탑승 (NAPE 부근)', time:'20:20', desc:'불꽃축제 오픈탑 버스 — 정확한 픽업지는 바우처 확인', coord:[22.1930,113.5490] },
+    { name:'스튜디오 시티 마카오', time:'21:30', desc:'호텔 복귀', coord:[22.1487,113.5568] }
+  ]},
+  { label:'DAY3', color:'#3a6fc4', stops:[
+    { name:'스튜디오 시티 마카오', time:'09:00', desc:'수영장, 체크아웃', coord:[22.1487,113.5568] },
+    { name:'브로드웨이 마카오', time:'11:00', desc:'짐 보관', coord:[22.1517,113.5613] },
+    { name:'갤럭시 마카오', time:'11:30', desc:'분수쇼, 점심, 키즈클럽', coord:[22.1503,113.5589] },
+    { name:'브로드웨이 마카오', time:'15:00', desc:'체크인, 물놀이, 저녁', coord:[22.1517,113.5613] }
+  ]},
+  { label:'DAY4', color:'#b4832f', stops:[
+    { name:'브로드웨이 마카오', time:'09:00', desc:'조식, 스냅 촬영, 물놀이, 저녁', coord:[22.1517,113.5613] },
+    { name:'갤럭시 마카오', time:'12:30', desc:'점심, 키즈클래스', coord:[22.1503,113.5589] },
+    { name:'윈팰리스', time:'19:00', desc:'케이블카 & 분수쇼', coord:[22.1441,113.5586] }
+  ]},
+  { label:'DAY5', color:'#8a5fc4', stops:[
+    { name:'브로드웨이 마카오', time:'10:30', desc:'조식, 체크아웃', coord:[22.1517,113.5613] },
+    { name:'마카오 국제공항', time:'13:50', desc:'택시 이동 후 7C6002편 탑승', coord:[22.1496,113.5915] }
+  ]}
+];
+
+const map = L.map('route-map').setView([22.155,113.560], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const bounds = [];
+DAYS.forEach(day => {
+  const latlngs = day.stops.map(s => s.coord);
+  latlngs.forEach(c => bounds.push(c));
+  L.polyline(latlngs, { color: day.color, weight:4, opacity:.85 }).addTo(map);
+  day.stops.forEach((stop, i) => {
+    const icon = L.divIcon({
+      className:'', iconSize:[24,24], iconAnchor:[12,12],
+      html:`<div style="background:${day.color};color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);">${i+1}</div>`
+    });
+    L.marker(stop.coord,{icon}).addTo(map)
+      .bindPopup(`<b>${day.label} · ${stop.time}</b><br><b>${stop.name}</b><br>${stop.desc}`);
+  });
+});
+if (bounds.length) map.fitBounds(bounds, { padding:[24,24] });
+</script>
+</body>
+</html>

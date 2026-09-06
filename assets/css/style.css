@@ -1,0 +1,251 @@
+/* =========================================================
+   worldtour_in_Mylife — 공통 스타일
+   지브리풍 파스텔톤 + 손그림 느낌의 개인 여행 아카이브
+   ========================================================= */
+
+:root{
+  --sky-top:#bfe3f7;
+  --sky-mid:#f6d9c4;
+  --sky-bottom:#fbe9dc;
+  --ink:#3a332c;
+  --ink-soft:#6b6259;
+  --paper:#fffaf3;
+  --card:#fffdf8;
+  --border:#e7ddcd;
+  --accent:#e0784a;
+  --accent-soft:#f2b98a;
+  --visited:#e0b23a;
+  --planned:#3a8fc4;
+  --shadow: 0 10px 30px rgba(60,45,25,0.12);
+  --radius: 18px;
+}
+
+*{ box-sizing:border-box; }
+html,body{
+  margin:0; padding:0; height:100%;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+img{ max-width:100%; }
+a{ color:inherit; }
+
+/* ---------- 인트로 ---------- */
+#intro{
+  position:relative;
+  height:100vh;
+  min-height:560px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, var(--sky-bottom) 100%);
+}
+
+.cloud{
+  position:absolute;
+  background:#fff;
+  opacity:.85;
+  border-radius:100px;
+  filter:blur(1px);
+  box-shadow: 40px 10px 0 -6px #fff, -40px 6px 0 -10px #fff, 80px 0 0 -14px #fff;
+  animation: drift linear infinite;
+}
+.cloud::before, .cloud::after{
+  content:"";
+  position:absolute;
+  background:#fff;
+  border-radius:100px;
+}
+.cloud1{ width:140px; height:46px; top:14%; left:-20%; animation-duration:60s; }
+.cloud2{ width:100px; height:34px; top:26%; left:-30%; animation-duration:80s; animation-delay:-20s; opacity:.7;}
+.cloud3{ width:180px; height:56px; top:8%;  left:-40%; animation-duration:100s; animation-delay:-45s; opacity:.6;}
+.cloud4{ width:90px;  height:30px; top:38%; left:-25%; animation-duration:70s; animation-delay:-10s; opacity:.55;}
+
+@keyframes drift{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(140vw); }
+}
+
+.sun{
+  position:absolute;
+  top:12%;
+  right:12%;
+  width:90px; height:90px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #fff6d8, var(--accent-soft) 70%);
+  box-shadow:0 0 60px 20px rgba(240,190,130,0.45);
+}
+
+.plane{
+  position:absolute;
+  top:32%;
+  left:-8%;
+  font-size:28px;
+  animation: fly 26s linear infinite;
+}
+@keyframes fly{
+  0%{ transform: translate(0,0) rotate(8deg); }
+  50%{ transform: translate(60vw, -4vh) rotate(6deg); }
+  100%{ transform: translate(130vw, -8vh) rotate(6deg); }
+}
+
+.intro-content{ position:relative; z-index:2; padding:0 20px; }
+.intro-eyebrow{
+  letter-spacing:.3em;
+  font-size:12px;
+  color:var(--ink-soft);
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.intro-title{
+  font-size:clamp(28px, 6vw, 56px);
+  line-height:1.25;
+  margin:0 0 14px;
+  font-weight:800;
+  color:var(--ink);
+  text-shadow: 0 2px 0 rgba(255,255,255,.5);
+}
+.intro-sub{
+  font-size:clamp(13px, 2vw, 16px);
+  color:var(--ink-soft);
+  max-width:520px;
+  margin:0 auto 34px;
+  line-height:1.7;
+}
+.scroll-cue{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  color:var(--ink-soft);
+  cursor:pointer;
+  border:none;
+  background:none;
+  font-family:inherit;
+}
+.scroll-cue .arrow{
+  width:10px; height:10px;
+  border-right:2px solid var(--ink-soft);
+  border-bottom:2px solid var(--ink-soft);
+  transform:rotate(45deg);
+  animation: bounce 1.8s ease-in-out infinite;
+}
+@keyframes bounce{
+  0%,100%{ transform:rotate(45deg) translate(0,0); }
+  50%{ transform:rotate(45deg) translate(6px,6px); }
+}
+
+/* ---------- 지구본 섹션 ---------- */
+#globe-section{
+  position:relative;
+  min-height:100vh;
+  background:linear-gradient(180deg,#0e1626 0%, #182238 100%);
+  color:#f3efe6;
+  padding:60px 20px 80px;
+}
+.section-head{ text-align:center; max-width:640px; margin:0 auto 24px; }
+.section-head h2{ font-size:clamp(22px,3.4vw,32px); margin:0 0 10px; }
+.section-head p{ color:#b9c0cf; font-size:14px; line-height:1.7; margin:0; }
+
+.legend{
+  display:flex; justify-content:center; gap:22px;
+  font-size:13px; color:#d8dee8; margin:18px 0 8px;
+}
+.legend span{ display:inline-flex; align-items:center; gap:6px; }
+.dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+.dot.visited{ background:var(--visited); }
+.dot.planned{ background:var(--planned); box-shadow:0 0 0 3px rgba(58,143,196,.35); }
+
+#globe-viz{
+  width:100%;
+  max-width:980px;
+  height:min(70vh, 640px);
+  margin:10px auto 0;
+  border-radius:24px;
+  overflow:hidden;
+}
+
+/* ---------- 여행 카드 그리드 (지구본 아래 목록) ---------- */
+#trip-grid{
+  max-width:1080px;
+  margin:50px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
+  gap:16px;
+  padding:0 6px;
+}
+.trip-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:16px;
+  cursor:pointer;
+  transition:transform .15s ease, background .15s ease;
+}
+.trip-card:hover{ transform:translateY(-3px); background:rgba(255,255,255,0.07); }
+.trip-card .tag{
+  display:inline-block;
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:999px;
+  margin-bottom:8px;
+}
+.trip-card.visited .tag{ background:rgba(224,178,58,0.18); color:var(--visited); }
+.trip-card.planned .tag{ background:rgba(58,143,196,0.2); color:#7cc4ee; }
+.trip-card h3{ margin:0 0 4px; font-size:15px; }
+.trip-card .period{ font-size:12px; color:#aeb6c4; }
+
+/* ---------- 갤러리 모달 ---------- */
+#modal-backdrop{
+  position:fixed; inset:0; background:rgba(15,15,20,0.72);
+  display:none; align-items:center; justify-content:center;
+  z-index:50; padding:20px;
+}
+#modal-backdrop.open{ display:flex; }
+#modal{
+  background:var(--card);
+  color:var(--ink);
+  width:min(760px, 100%);
+  max-height:86vh;
+  overflow-y:auto;
+  border-radius:20px;
+  padding:26px 26px 30px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+#modal .close-btn{
+  position:absolute; top:16px; right:18px;
+  background:none; border:none; font-size:20px; cursor:pointer; color:var(--ink-soft);
+}
+#modal .tag{
+  display:inline-block; font-size:11px; padding:3px 10px; border-radius:999px; margin-bottom:10px;
+}
+#modal .tag.visited{ background:#f6ecc8; color:#8a6a12; }
+#modal .tag.planned{ background:#dcecf6; color:#1f6f9c; }
+#modal h2{ margin:0 0 6px; font-size:22px; }
+#modal .period{ color:var(--ink-soft); font-size:13px; margin-bottom:18px; }
+#modal .photo-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px;
+  margin-top:10px;
+}
+#modal .photo-grid img{ border-radius:12px; width:100%; height:130px; object-fit:cover; }
+#modal .placeholder-note{
+  font-size:12px; color:var(--ink-soft); background:#f4ede0; border:1px dashed var(--border);
+  border-radius:12px; padding:10px 14px; margin-top:14px;
+}
+#modal .plan-link{
+  display:inline-block; margin-top:16px; background:var(--accent); color:#fff;
+  padding:10px 18px; border-radius:999px; text-decoration:none; font-size:14px; font-weight:600;
+}
+
+footer{
+  text-align:center; color:#8f97a6; font-size:12px; padding:26px 12px 40px;
+  background:#182238;
+}
+footer a{ color:#cfd6e2; }
