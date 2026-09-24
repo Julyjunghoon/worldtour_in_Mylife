@@ -131,8 +131,8 @@ const TRIPS = [
   },
   {
     id: 'macau2026', title: '마카오 가족여행', period: '2026.09.18 ~ 09.22', country: '마카오',
-    coords: [22.1987, 113.5439], status: 'planned',
-    folder: '2026_마카오여행', photos: [], planPage: 'macau-plan.html'
+    coords: [22.1987, 113.5439], status: 'visited',
+    folder: '20260918~0922_마카오', photos: [], planPage: 'macau-plan.html'
   }
 ];
 
