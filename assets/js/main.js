@@ -133,9 +133,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     backdrop.classList.add('open');
   }
 
+  function photoUrl(trip, p) {
+    return `photos/${trip.folder}/${p}`;
+  }
+
   function openTripModal(trip) {
     const photosHtml = (trip.photos && trip.photos.length)
-      ? `<div class="photo-grid">${trip.photos.map(p => `<img src="photos/${trip.folder}/${p}" alt="${trip.title}" loading="lazy">`).join('')}</div>`
+      ? `<div class="photo-grid">${trip.photos.map((p, i) => `<img src="${photoUrl(trip, p)}" alt="${trip.title}" loading="lazy" data-idx="${i}">`).join('')}</div>`
       : `<div class="placeholder-note">아직 이 여행의 사진이 등록되지 않았어요. <br>
            <code>해외여행/${trip.folder}</code> 폴더에 사진을 넣고
            <code>tools/generate_manifest.py</code> 를 실행하면 자동으로 채워집니다.</div>`;
@@ -153,11 +157,72 @@ document.addEventListener('DOMContentLoaded', async () => {
       ${planLink}
     `;
     modal.querySelector('.close-btn').addEventListener('click', closeModal);
+    modal.querySelectorAll('.photo-grid img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(trip, Number(img.dataset.idx)));
+    });
     backdrop.classList.add('open');
   }
 
-  // esc로 닫기
+  // ---------- 사진 라이트박스 (확대 보기) ----------
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCount = document.getElementById('lightbox-count');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  const lightboxClose = document.getElementById('lightbox-close');
+  let lbTrip = null;
+  let lbIndex = 0;
+
+  function renderLightbox() {
+    if (!lbTrip) return;
+    lightboxImg.src = photoUrl(lbTrip, lbTrip.photos[lbIndex]);
+    lightboxImg.alt = `${lbTrip.title} ${lbIndex + 1}`;
+    lightboxCount.textContent = `${lbIndex + 1} / ${lbTrip.photos.length}`;
+    const multi = lbTrip.photos.length > 1;
+    lightboxPrev.style.display = multi ? 'flex' : 'none';
+    lightboxNext.style.display = multi ? 'flex' : 'none';
+  }
+
+  function openLightbox(trip, index) {
+    if (!trip.photos || !trip.photos.length) return;
+    lbTrip = trip;
+    lbIndex = index;
+    renderLightbox();
+    lightbox.classList.add('open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lbTrip = null;
+  }
+
+  function showPrev() {
+    if (!lbTrip) return;
+    lbIndex = (lbIndex - 1 + lbTrip.photos.length) % lbTrip.photos.length;
+    renderLightbox();
+  }
+
+  function showNext() {
+    if (!lbTrip) return;
+    lbIndex = (lbIndex + 1) % lbTrip.photos.length;
+    renderLightbox();
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', showPrev);
+  lightboxNext.addEventListener('click', showNext);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // esc / 방향키
   document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showPrev();
+      else if (e.key === 'ArrowRight') showNext();
+      return;
+    }
     if (e.key === 'Escape') closeModal();
   });
 });

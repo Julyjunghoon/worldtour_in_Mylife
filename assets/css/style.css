@@ -249,3 +249,39 @@ footer{
   background:#182238;
 }
 footer a{ color:#cfd6e2; }
+
+
+/* ---------- 사진 라이트박스 ---------- */
+#modal .photo-grid img{ cursor: zoom-in; transition: transform .15s ease, opacity .15s ease; }
+#modal .photo-grid img:hover{ transform: scale(1.03); opacity: .92; }
+
+#lightbox{
+  position:fixed; inset:0; background:rgba(10,10,12,0.94);
+  display:none; align-items:center; justify-content:center;
+  z-index:100; padding:40px 20px;
+}
+#lightbox.open{ display:flex; }
+#lightbox img{
+  max-width:min(1100px, 92vw); max-height:86vh;
+  border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.5);
+  object-fit:contain;
+}
+#lightbox button{
+  position:fixed; background:rgba(255,255,255,0.12); color:#fff; border:none;
+  border-radius:50%; cursor:pointer; font-size:22px; line-height:1;
+  width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+  transition:background .15s ease;
+}
+#lightbox button:hover{ background:rgba(255,255,255,0.24); }
+#lightbox-close{ top:22px; right:22px; font-size:26px; }
+#lightbox-prev{ left:16px; top:50%; transform:translateY(-50%); }
+#lightbox-next{ right:16px; top:50%; transform:translateY(-50%); }
+#lightbox-count{
+  position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+  color:#d8dee8; font-size:13px; background:rgba(255,255,255,0.08);
+  padding:4px 12px; border-radius:999px;
+}
+@media (max-width: 640px){
+  #lightbox-prev{ left:6px; } #lightbox-next{ right:6px; }
+  #lightbox button{ width:38px; height:38px; font-size:18px; }
+}
